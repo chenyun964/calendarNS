@@ -62,3 +62,53 @@ button {
 .button-interstitial {
   background-color: #808080;
 }
+
+.cal-out-month .cal-cell-top {
+  display: none;
+}
+
+.event_date{
+  text-align: center;
+  font-size: 28px;
+  margin-top: 15px;
+  line-height: -20pt;
+}
+
+.event_info{
+  background-color: #FF3354;
+  color:white;
+  border-radius: 15%;
+  margin-right: 5%;
+  margin-top: 25px;
+}
+
+.event_title{
+  margin-left: 6%;
+  padding-top: 25px;
+  font-size: 22px;
+}
+
+.event_location{
+  margin-top:35px;
+}
+
+.event_timing{
+  margin-left: 6%;
+  padding-top: 10px;
+  padding-bottom: 25px;
+}
+
+.event_description{
+  margin-bottom: 35px;
+}
+
+#event_info_2{
+  background-color: #3598db;
+  color:white;
+  border-radius: 25px;
+  margin-right: 5%;
+}
+
+#calendar_grid{
+
+}

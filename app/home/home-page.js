@@ -13,25 +13,31 @@ function pageLoaded(args) {
     page.bindingContext = HomeViewModel();
     page.bindingContext.doRequestPermission();
     page.bindingContext.doListEvents();
-
-    // var page = args.object;
-    // var pageData = new Observable();
-    // page.bindingContext = pageData;
-    // var eventTitles = ["Lunch with Steve", "Meeting with Jane", "Q1 Recap Meeting"];
-    // var events = [];
-    //
-    // var j = 1;
-    // for (var i = 0; i < eventTitles.length; i++) {
-    //     var now = new Date();
-    //     var startDate = new Date(now.getFullYear(), now.getMonth(), j * 2, 12);
-    //     console.log(startDate);
-    //     var endDate = new Date(now.getFullYear(), now.getMonth(), (j * 2) + (j % 3), 13);
-    //     console.log(endDate);
-    //     var event = new calendarModule.CalendarEvent(eventTitles[i], startDate, endDate);
-    //     events.push(event);
-    //     j++;
-    // }
-    // pageData.set("calEvents", events);
 }
 
 exports.pageLoaded = pageLoaded;
+
+exports.onDateSelected = function(args) {
+  var page = args.object;
+  var startDate = args.date;
+  var endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate()+1);
+  var events = page.bindingContext.doFindEventByDate(startDate, endDate);
+
+}
+
+exports.onDateDeselected = function(args) {
+  // console.log("onDateDeselected: " + args.date);
+}
+
+exports.onNavigatedToDate = function(args) {
+  console.log("onNavigatedToDate: " + args.date);
+}
+
+exports.onNavigatingToDateStarted = function(args) {
+  console.log("onNavigatingToDateStarted: " + args.date);
+}
+
+exports.onViewModeChanged = function(args) {
+  console.log("onViewModeChanged: " + args.newValue);
+}

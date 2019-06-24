@@ -1,97 +1,62 @@
-<Page class="page" xmlns="http://schemas.nativescript.org/tns.xsd"
-  xmlns:calendar="nativescript-ui-calendar"
-  xmlns:rc="nativescript-ui-calendar"
-  loaded="pageLoaded">
-  <!-- <TabView>
-    <TabView.items>
-      <TabViewItem title="Calendar">
-        <TabViewItem.view> -->
-          <GridLayout columns="*,*" rows="450, auto, auto, auto" horizontalAlignment="center">
-            <calendar:RadCalendar row="0" colSpan="2" id="myCalendar" eventSource="{{ calEvents }}" eventsViewMode="Inline" viewMode="Month">
-            <rc:RadCalendar.monthViewStyle>
-              <rc:CalendarMonthViewStyle
-                selectionShapeColor="#FF6E6E"
-                showTitle="true"
-                showDayNames="true"
-                backgroundColor="#FFFFFF">
+<Page class="page" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:calendar="nativescript-ui-calendar" xmlns:rc="nativescript-ui-calendar" loaded="pageLoaded">
+  <ScrollView>
+    <GridLayout columns="*,4*" rows="400, auto, auto, auto, auto" horizontalAlignment="center" id="calendar_grid">
+      <calendar:RadCalendar row="0" colSpan="2" id="myCalendar"
+        eventSource="{{ calEvents }}"
+        eventsViewMode="None"
+        viewMode="Month"
+        dateSelected="onDateSelected"
+    		dateDeselected="onDateDeselected"
+    		navigatedToDate="onNavigatedToDate"
+    	 	navigatingToDateStarted="onNavigatingToDateStarted"
+    		viewModeChanged="onViewModeChanged">
+        <rc:RadCalendar.monthViewStyle>
+          <rc:CalendarMonthViewStyle selectionShapeColor="#FF6E6E" selectionShapeSize="25" showTitle="true" showDayNames="true" backgroundColor="#FFFFFF">
 
-                <!-- <rc:CalendarMonthViewStyle.dayCellStyle>
-                  <rc:DayCellStyle
-                    cellPaddingVertical="40"/>
-                </rc:CalendarMonthViewStyle.dayCellStyle> -->
+            <rc:CalendarMonthViewStyle.dayCellStyle>
+              <rc:DayCellStyle cellTextSize="16"/>
+            </rc:CalendarMonthViewStyle.dayCellStyle>
 
-                <rc:CalendarMonthViewStyle.selectedDayCellStyle>
-                  <rc:DayCellStyle
-                    cellTextColor="White"/>
-                </rc:CalendarMonthViewStyle.selectedDayCellStyle>
+            <rc:CalendarMonthViewStyle.selectedDayCellStyle>
+              <rc:DayCellStyle cellTextColor="White" cellTextSize="16"/>
+            </rc:CalendarMonthViewStyle.selectedDayCellStyle>
 
+            <rc:CalendarMonthViewStyle.dayNameCellStyle>
+              <rc:CellStyle cellTextColor="#000000" cellTextSize="14"/>
+            </rc:CalendarMonthViewStyle.dayNameCellStyle>
 
-                <rc:CalendarMonthViewStyle.dayNameCellStyle>
-                  <rc:CellStyle
-                    cellTextColor="#000000"
-                    cellTextSize="14"
-                    cellPaddingVertical="10"/>
-                </rc:CalendarMonthViewStyle.dayNameCellStyle>
+            <rc:CalendarMonthViewStyle.titleCellStyle>
+              <rc:CellStyle cellTextColor="#000000" cellTextSize="18"/>
+            </rc:CalendarMonthViewStyle.titleCellStyle>
 
-                <rc:CalendarMonthViewStyle.titleCellStyle>
-                  <rc:CellStyle
-                    cellTextColor="#000000"
-                    cellTextSize="18"
-                    cellPaddingVertical="15"/>
-                </rc:CalendarMonthViewStyle.titleCellStyle>
+          </rc:CalendarMonthViewStyle>
+        </rc:RadCalendar.monthViewStyle>
+      </calendar:RadCalendar>
 
-                <!-- <rc:CalendarMonthViewStyle.weekendCellStyle> -->
-                <!-- <rc:DayCellStyle cellTextColor="#000000"/> -->
-            <!-- </rc:CalendarMonthViewStyle.weekendCellStyle> --> -->
+      <!-- <Button row="1" col="0" text="find by title" tap="{{ doFindEventByTitle }}" class="button"/> <Button row="1" col="1" text="find all events" tap="{{ doFindAllEvents }}" class="button"/> -->
+      <Label row="1" col="0" textWrap="true" text="{{ startDate }}" class="event_date"/>
+      <GridLayout row="1" col="1" columns="*,*" rows="auto, auto" class="event_info" id="event_info_1">
+        <Label row="0" col="0" textWrap="true" text="{{ eventTitle }}" class="event_title"/>
+        <Label row="0" col="1" textWrap="true" text="{{ eventLocation }}" class="event_location"/>
 
-                <!-- <rc:CalendarMonthviewStyle.inlineEventCellStyle>
-                  <rc:InlineEventCellStyle cellBackgroundColor="LightPink" eventTextColor="Gold" eventFontName="Avenir" eventFontStyle="BoldItalic" eventTextSize="12" timeTextColor="DeepSkyBlue" timeFontName="Courier" timeFontStyle="Regular" timeTextSize="14"/>
-                </rc:CalendarMonthviewStyle.inlineEventCellStyle> -->
-              </rc:CalendarMonthViewStyle>
-            </rc:RadCalendar.monthViewStyle>
-          </calendar:RadCalendar>
+        <Label row="1" col="0" textWrap="true" text="{{ eventTime }}" class="event_timing"/>
+        <Label row="1" col="1" textWrap="true" text="{{ eventNotes }}" class="event_description"/>
+      </GridLayout>
 
-          <!-- <Button row="1" col="0" text="has permission?" tap="{{ doCheckHasPermission }}" class="button"/>
-          <Button row="1" col="1" text="request perm." tap="{{ doRequestPermission }}" class="button"/> -->
+      <Label row="2" col="0" textWrap="true" text="8" class="event_date"/>
+      <GridLayout row="2" col="1" columns="*,*" rows="auto, auto" class="event_info" id="event_info_2">
+        <Label row="0" col="0" textWrap="true" text="Lecture" class="event_title"/>
+        <Label row="0" col="1" textWrap="true" text="NUS" class="event_location"/>
 
-          <Button row="1" col="0" text="find by title" tap="{{ doFindEventByTitle }}" class="button"/>
-          <Button row="1" col="1" text="find all events" tap="{{ doFindAllEvents }}" class="button"/>
+        <Label row="1" col="0" textWrap="true" text="12pm - 4pm" class="event_timing"/>
+        <Label row="1" col="1" textWrap="true" text="Biodiversity" class="event_description"/>
+      </GridLayout>
 
-          <Button row="2" col="0" text="all day" tap="{{ doCreateAllDayEvent }}" class="button button-positive"/>
-          <Button row="2" col="1" text="in custom calendar" tap="{{ doCreateEventInCustomCalendar }}" class="button button-positive"/>
+      <!-- <Button row="3" col="0" text="all day" tap="{{ doCreateAllDayEvent }}" class="button button-positive"/>
+      <Button row="3" col="1" text="in custom calendar" tap="{{ doCreateEventInCustomCalendar }}" class="button button-positive"/>
 
-          <Button row="3" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/>
-          </GridLayout>
-        <!-- </TabViewItem.view>
-      </TabViewItem>
-      <TabViewItem title="Button">
-        <TabViewItem.view>
-          <GridLayout columns="*,*" rows="auto, auto, auto, auto, auto, auto, auto, auto, auto" horizontalAlignment="center" class="tab-content">
-            <Label row="0" colSpan="2" text="You need permission before being able to access the Calendar. The plugin requests this when it's loaded, but you can always trigger these manually." class="subtitle" textWrap="true"/>
+      <Button row="4" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/> -->
 
-            <Button row="1" col="0" text="has permission?" tap="{{ doCheckHasPermission }}" class="button"/>
-            <Button row="1" col="1" text="request perm." tap="{{ doRequestPermission }}" class="button"/>
-
-            <Label row="2" colSpan="2" text="Creating events" class="subtitle" textWrap="true"/>
-
-            <Button row="3" col="0" text="with reminders" tap="{{ doCreateEventWithReminders }}" class="button button-positive"/>
-            <Button row="3" col="1" text="all day" tap="{{ doCreateAllDayEvent }}" class="button button-positive"/>
-
-            <Button row="4" col="0" text="repeating" tap="{{ doCreateRepeatingEvent }}" class="button button-positive"/>
-            <Button row="4" col="1" text="in custom calendar" tap="{{ doCreateEventInCustomCalendar }}" class="button button-positive"/>
-
-            <Label row="5" colSpan="2" text="Finding events" class="subtitle" textWrap="true"/>
-
-            <Button row="6" col="0" text="find by title" tap="{{ doFindEventByTitle }}" class="button"/>
-            <Button row="6" col="1" text="find all events" tap="{{ doFindAllEvents }}" class="button"/>
-
-            <Label row="7" colSpan="2" text="Other features" class="subtitle" textWrap="true"/>
-
-            <Button row="8" col="0" text="list calendars" tap="{{ doListCalendars }}" class="button"/>
-
-          </GridLayout>
-        </TabViewItem.view>
-      </TabViewItem>
-    </TabView.items>
-  </TabView> -->
+    </GridLayout>
+  </ScrollView>
 </Page>
