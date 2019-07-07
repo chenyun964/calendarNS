@@ -70,7 +70,7 @@ function HomeViewModel() {
                 startDate: new Date(d.getTime() + (24 * 60 * 60 * 1000)),
                 endDate: new Date(d.getTime() + (2 * 24 * 60 * 60 * 1000))
             });
-            this.doFindAllEvents({});
+            this.doListEvents({});
         },
 
         //Example of creating repeating events

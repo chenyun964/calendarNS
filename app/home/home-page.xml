@@ -63,7 +63,7 @@
 
 
       <!-- Testing buttons, remove all events -->
-      <!-- <Button row="4" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/>-->
+      <Button row="4" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/>
 
     </GridLayout>
   </ScrollView>
