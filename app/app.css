@@ -70,8 +70,17 @@ button {
 .event_date{
   text-align: center;
   font-size: 28px;
-  margin-top: 15px;
+  margin-top: 60px;
   line-height: -20pt;
+  font-weight: 200;
+}
+
+.event_style{
+  text-align: center;
+  font-size: 54px;
+  margin-top: -80px;
+  line-height: -20pt;
+  color:#FF6E6E;
 }
 
 .event_info{

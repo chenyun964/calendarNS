@@ -1,17 +1,19 @@
-<Page class="page" xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:calendar="nativescript-ui-calendar" xmlns:rc="nativescript-ui-calendar" loaded="pageLoaded">
+<Page class="page"
+  xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:calendar="nativescript-ui-calendar"
+  xmlns:rc="nativescript-ui-calendar"
+  loaded="pageLoaded">
   <ScrollView>
-    <GridLayout columns="*,4*" rows="400, auto, auto, auto, auto" horizontalAlignment="center" id="calendar_grid">
+    <GridLayout columns="*,4*" rows="350, auto, auto, auto, auto" horizontalAlignment="center" id="calendar_grid">
       <calendar:RadCalendar row="0" colSpan="2" id="myCalendar"
         eventSource="{{ calEvents }}"
+        selectedDate="{{ selectedDate }}"
         eventsViewMode="None"
         viewMode="Month"
         dateSelected="onDateSelected"
-    		dateDeselected="onDateDeselected"
-    		navigatedToDate="onNavigatedToDate"
-    	 	navigatingToDateStarted="onNavigatingToDateStarted"
-    		viewModeChanged="onViewModeChanged">
+    		dateDeselected="onDateDeselected">
         <rc:RadCalendar.monthViewStyle>
-          <rc:CalendarMonthViewStyle selectionShapeColor="#FF6E6E" selectionShapeSize="25" showTitle="true" showDayNames="true" backgroundColor="#FFFFFF">
+          <rc:CalendarMonthViewStyle selectionShapeColor="#FF6E6E" selectionShape="Round" selectionShapeSize="14" showTitle="true" showDayNames="true" backgroundColor="#FFFFFF">
 
             <rc:CalendarMonthViewStyle.dayCellStyle>
               <rc:DayCellStyle cellTextSize="16"/>
@@ -33,9 +35,11 @@
         </rc:RadCalendar.monthViewStyle>
       </calendar:RadCalendar>
 
-      <!-- <Button row="1" col="0" text="find by title" tap="{{ doFindEventByTitle }}" class="button"/> <Button row="1" col="1" text="find all events" tap="{{ doFindAllEvents }}" class="button"/> -->
-      <Label row="1" col="0" textWrap="true" text="{{ startDate }}" class="event_date"/>
-      <GridLayout row="1" col="1" columns="*,*" rows="auto, auto" class="event_info" id="event_info_1">
+      <GridLayout row='1' col="0" rows="3*, *">
+        <Label row="0" textWrap="true" text="{{ startDate }}" class="event_date"/>
+        <Label row="1" textWrap="true" text="." class="event_style"/>
+      </GridLayout>
+      <GridLayout row="1" col="1" columns="*,*" rows="auto, auto" class="event_info">
         <Label row="0" col="0" textWrap="true" text="{{ eventTitle }}" class="event_title"/>
         <Label row="0" col="1" textWrap="true" text="{{ eventLocation }}" class="event_location"/>
 
@@ -43,19 +47,23 @@
         <Label row="1" col="1" textWrap="true" text="{{ eventNotes }}" class="event_description"/>
       </GridLayout>
 
-      <Label row="2" col="0" textWrap="true" text="8" class="event_date"/>
+      <!-- <Label row="2" col="0" textWrap="true" text="8" class="event_date"/>
       <GridLayout row="2" col="1" columns="*,*" rows="auto, auto" class="event_info" id="event_info_2">
         <Label row="0" col="0" textWrap="true" text="Lecture" class="event_title"/>
         <Label row="0" col="1" textWrap="true" text="NUS" class="event_location"/>
 
         <Label row="1" col="0" textWrap="true" text="12pm - 4pm" class="event_timing"/>
         <Label row="1" col="1" textWrap="true" text="Biodiversity" class="event_description"/>
-      </GridLayout>
+      </GridLayout> -->
 
-      <!-- <Button row="3" col="0" text="all day" tap="{{ doCreateAllDayEvent }}" class="button button-positive"/>
+
+      <!-- Testing buttons, adding of sample events -->
+      <Button row="3" col="0" text="all day" tap="{{ doCreateAllDayEvent }}" class="button button-positive"/>
       <Button row="3" col="1" text="in custom calendar" tap="{{ doCreateEventInCustomCalendar }}" class="button button-positive"/>
 
-      <Button row="4" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/> -->
+
+      <!-- Testing buttons, remove all events -->
+      <!-- <Button row="4" colSpan="2" text="delete events" tap="{{ doDeleteEvents }}" class="button button-danger"/>-->
 
     </GridLayout>
   </ScrollView>

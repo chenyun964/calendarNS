@@ -5,7 +5,7 @@ logic, and to set up your page’s data binding.
 */
 var frameModule = require("tns-core-modules/ui/frame");
 var HomeViewModel = require("./home-view-model");
-var calendarModule = require("nativescript-telerik-ui-pro/calendar");
+var calendarModule = require("nativescript-ui-calendar");
 var Observable = require("data/observable").Observable;
 
 function pageLoaded(args) {
@@ -24,20 +24,11 @@ exports.onDateSelected = function(args) {
   endDate.setDate(startDate.getDate()+1);
   var events = page.bindingContext.doFindEventByDate(startDate, endDate);
 
+  // console.log(page.displayedDate);
+  // page.SelectedDate = page.displayedDate;
+  // console.log(page.SelectedDate)
 }
 
 exports.onDateDeselected = function(args) {
   // console.log("onDateDeselected: " + args.date);
-}
-
-exports.onNavigatedToDate = function(args) {
-  console.log("onNavigatedToDate: " + args.date);
-}
-
-exports.onNavigatingToDateStarted = function(args) {
-  console.log("onNavigatingToDateStarted: " + args.date);
-}
-
-exports.onViewModeChanged = function(args) {
-  console.log("onViewModeChanged: " + args.newValue);
 }
